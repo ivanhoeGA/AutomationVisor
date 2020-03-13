@@ -1,0 +1,40 @@
+package campana353;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class uniclick_05b {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Abrir el browser y navegar a la url
+		ChromeOptions opts = new ChromeOptions();
+		opts.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(opts);
+		driver.navigate().to("https://uniclick.visor.io/login/uniclick");
+		driver.manage().window().maximize();
+
+		// Ingresar credenciales para abrir navegador
+		driver.findElement(By.id("emaIndex")).sendKeys("producto.bovinos@yopmail.com");
+		driver.findElement(By.id("pswIndex")).sendKeys("Mexico123*");
+		driver.findElement(By.id("submit")).click();
+		Thread.sleep(5500);
+		
+		//Ubicarse en la etapa correspondiente para la carga de los campos obligatorios
+		driver.findElement(By.xpath("//*[text() = 'Anexo 1 principal accionista']")).click();
+		
+		//Declarar los campos de anexo
+		WebElement nameAcreditado = driver.findElement(By.id("Anexo_1_principal_accionista_Nombre_del_acreditado"));
+		WebElement montoCredito = driver.findElement(By.id("Anexo_1_principal_accionista_Monto_solicitado_de_la_línea_de_crédito"));
+		WebElement prodAvalado = driver.findElement(By.id("Anexo_1_principal_accionista_Producto_que_se_avala"));
+		
+		//Se ingresa información en los campos correspondientes
+		nameAcreditado.sendKeys("Fernando Amonte Arellano");
+		montoCredito.sendKeys("250000");
+		prodAvalado.click();
+
+	}
+
+}

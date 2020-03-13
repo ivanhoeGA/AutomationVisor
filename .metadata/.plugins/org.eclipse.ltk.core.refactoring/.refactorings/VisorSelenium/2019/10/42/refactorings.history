@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ComprobacionBank.java&apos; to &apos;VisorSelenium/src/PymeAccesoNuevo&apos;&#x0D;&#x0A;- Original project: &apos;VisorSelenium&apos;&#x0D;&#x0A;- Destination element: &apos;VisorSelenium/src/PymeAccesoNuevo&apos;&#x0D;&#x0A;- Original element: &apos;PymeAccesoNuevo.ComprobacionBank.java&apos;" description="Copy compilation unit" destination="/src&lt;PymeAccesoNuevo" element1="/src&lt;PymeAccesoNuevo{ComprobacionBank.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1571180285782" units="1" version="1.0"/>
+</session>

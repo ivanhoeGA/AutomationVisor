@@ -1,0 +1,41 @@
+package PymeAccesoNuevo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class RegistroPyme {
+
+	public static void main(String[] args) throws InterruptedException {
+	//
+		ChromeOptions opts = new ChromeOptions();
+		opts.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(opts);
+			driver.navigate().to("https://demobancomext.visor.io/admin/autentifica_admin_pruebas.php?email=bancorro@yopmail.com&pass=Visor@123&type=2&idc=249");
+			driver.manage().window().maximize ();
+		
+		//Abrir el apartado de notificaciones para el BANCO
+			driver.navigate().to("https://demobancomext.visor.io/admin/notificaciones");
+		
+		//Buscar el RFC de la PYME para ingresar en su perfil
+			driver.findElement(By.id("term")).sendKeys("UNI000630BF8");
+			driver.findElement(By.xpath("//*[contains(@class, 'btn btn-success')]")).click();
+		Thread.sleep(1500);
+			driver.findElement(By.xpath("//*[contains(@class, 'btn btn-default')][1]")).click();
+		
+		//Ingresar al administrador de proceso
+			driver.findElement(By.xpath("//*[text() = 'Administrador de Proceso']")).click();
+		
+		//Modificar la etapa en la que se encuentra
+			driver.findElement(By.xpath("//*[contains(@class, 'sm-form-control')]")).sendKeys("Registro electrónico");
+		
+		//Autorizar el cambio de etapa
+			driver.findElement(By.id("btnCambioStatus")).click();
+			
+		//Se cierra el navegador
+			driver.close();
+
+	}
+
+}

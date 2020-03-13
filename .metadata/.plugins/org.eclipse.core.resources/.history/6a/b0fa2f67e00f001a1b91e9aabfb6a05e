@@ -1,0 +1,84 @@
+package PymeAccesoNuevo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class ValidacionCorreo {
+	
+	
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ChromeOptions opts = new ChromeOptions();
+		opts.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(opts);
+		
+		//Acceder al correo para generar la contraseña
+		driver.navigate().to("http://www.yopmail.com/es/");
+		driver.manage().window().maximize ();
+		
+		driver.findElement(By.id("login")).sendKeys("prueba.test");
+		driver.findElement(By.xpath("//*[@class='sbut']")).click();
+		//Thread.sleep(2000);
+		
+		//Identificar el botón "Crear contraseña"y cambiar de pestaña para generar tu contraseña
+		//driver.findElement(By.id("m4")).click();
+		//driver.findElement(By.xpath("//*[.='CREAR CONTRASEÑA']")).click();
+		
+		//Identificación de la página deSuppliers pay cash
+		driver.navigate().to("https://info.visor.io/SPC/bancomext");
+				
+		String baseUrl = "https://info.visor.io/SPC/bancomext";
+		String expectedTitle = "Suppliers Pay Cash, factoraje electrónico a proveedores.";
+		String actualTitle = "";
+		
+		driver.get(baseUrl);
+		
+		actualTitle = driver.getTitle();
+		
+		
+		if (actualTitle.contentEquals(expectedTitle))  {
+			System.out.println("Verificación realizada, Suppliers Pay Cash es correcto");
+		}
+		else {
+			System.out.println("Incorrect Test");
+		}
+		
+		//Identificar el botón "Crea tu cuenta" y detonar la ventana para ingresar tu RFC
+			driver.findElement(By.xpath("//*[text() = 'Crea tu cuenta']")).click();
+		Thread.sleep(2000);
+		
+		//Identificación de la página deSuppliers pay cash
+		String expectedTitle1 = "Bienvenido";
+		String actualTitle1 = "";
+		
+		
+		actualTitle1 = driver.getTitle();
+		
+		
+		if (actualTitle1.contentEquals(expectedTitle1))  {
+			System.out.println("Verificación realizada, Bienvenido, se ingresa el RFC es correcto");
+		}
+		else {
+			System.out.println("Incorrect Test");
+		}
+		//Ingresar el RFC y aceptar aviso de privacidad	
+			driver.findElement(By.id("rfc")).sendKeys("GAAI901203HJ5");
+			driver.findElement(By.id("acepto")).click();
+		
+		//Identificar el botón "Veririficar RFC" y detonar la ventana para ingresar tu RFC
+			driver.findElement(By.xpath("//*[text() = 'VERIFICAR RFC']")).click();
+			
+			
+		//Completar el formulario de Usuario y Contraseña
+			driver.findElement(By.id("telDCDRfc")).sendKeys("5523569874");
+			driver.findElement(By.id("contDCDRfc")).sendKeys("GAAI901203HJ5");
+			driver.findElement(By.id("ema")).sendKeys("prueba.test@yopmail.com");
+			driver.findElement(By.id("pass1")).sendKeys("Mexico123*");
+			driver.findElement(By.id("pass2")).sendKeys("Mexico123*");
+			driver.findElement(By.xpath("//*[text() = 'Registrarse']")).click();
+	}
+
+}

@@ -1,0 +1,56 @@
+package homeworks;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class FacebookAddFriend {
+
+	public static void main(String[] args) {
+		// Abrir el browser y navegar a la url
+		ChromeOptions opts = new ChromeOptions();
+		opts.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(opts);
+		driver.navigate().to("http://facebook.com");
+		// verificar carga la pagina de login con sus campos para login.
+//		userField: id: "email"
+//			passField: id="pass"
+//			loginButton: xpath: "//input[@value = 'Iniciar sesión']"
+		//primero los encuentro
+		WebElement userField = driver.findElement(By.id("email"));
+		WebElement passField = driver.findElement(By.id("pass"));
+		WebElement loginButton = driver.findElement(By.xpath("//input[@value = 'Log In']"));
+		//luego los verifico.
+		if(userField.isDisplayed() && passField.isDisplayed() && loginButton.isDisplayed()) {
+			System.out.println("PASS:  Los elementos de login se mostraron");
+		} else {
+			System.out.println("FAIL:  Los elementos de login NO se mostraron");
+		}
+		// Loguearme a Facebook
+		userField.sendKeys("omar.selenium.abril@gmail.com");
+		passField.sendKeys("Test@1234");
+		loginButton.click();
+		
+		// verificar que Carga la página de inicio
+		WebElement searchBox = driver.findElement(By.name("q"));
+		WebElement searchButton = driver.findElement(By.xpath("//button [@data-testid='facebar_search_button' ]"));
+		// searchBox: name="q"
+		// searchButton: //button [@data-testid="facebar_search_button" ]
+		if(searchBox.isDisplayed() && searchButton.isDisplayed()) {
+			
+			System.out.println("PASS:  Los elementos de la página de inicio se mostraron");
+		} else {
+			System.out.println("FAIL:  Los elementos de la página de inicio NO se mostraron");
+		}
+		// Buscar amigo
+		searchBox.sendKeys("Andres Perez");
+		searchButton.click();
+		// verificar que Muestra la página de resultados con varias opciones.
+		// Agregar a amigo relevante
+		// verificar que El botón "Agregar a amigos" cambia a "Solicitud de amistad enviada"
+
+	}
+
+}
